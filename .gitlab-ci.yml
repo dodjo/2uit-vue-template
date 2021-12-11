@@ -1,0 +1,66 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  DEVELOP_DOMAIN: ratio.dev2uit.ru
+#  PROD_DOMAIN: lr-service.su
+
+# Шаблон для задач по сборке...
+.build_template: &build_template
+  image: timbru31/node-alpine-git
+  stage: build
+  cache:
+    key: build-node_modules
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - ./dist
+  before_script:
+    - cp ./config/env.js.dist ./config/env.js
+    - touch ./config/env.js
+    - echo "$ENV_CONFIG" > ./config/env.js
+    - cat ./config/env.js
+  script:
+    - npm i
+    - npm run build
+#    - npm rebuild node-sass
+#    - npm run generate -static
+
+build develop:
+  <<: *build_template
+  only:
+    - develop
+  variables:
+    ENV_CONFIG: $DEVELOP_ENV
+
+#build production:
+#  <<: *build_template
+#  only:
+#    - master
+#  variables:
+#    ENV_CONFIG: $PROD_ENV
+
+# Шаблон для задач на деплой сборки...
+.deploy_template: &deploy_template
+  image: alpine
+  stage: deploy
+  before_script:
+    - apk add openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+
+deploy develop:
+  <<: *deploy_template
+  only:
+    - develop
+  variables:
+    SSH_PRIVATE_KEY: $SSH_PRIVATE_DEV
+  script:
+    - scp -o StrictHostKeyChecking=no -C -r ./dist/* admintwg_admin@admintwg.beget.tech:~/$DEVELOP_DOMAIN/public_html
+  environment:
+    name: Develop
+    url: https://$DEVELOP_DOMAIN

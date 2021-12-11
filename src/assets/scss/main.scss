@@ -1,0 +1,80 @@
+@import "fonts";
+
+ // Core
+
+@import "template/custom/functions";
+@import "template/bootstrap/functions";
+
+@import "template/custom/variables";
+@import "template/bootstrap/variables";
+
+@import "template/custom/mixins";
+@import "template/bootstrap/mixins";
+
+ // Bootstrap components
+
+@import "template/bootstrap/root";
+@import "template/bootstrap/reboot";
+@import "template/bootstrap/type";
+@import "template/bootstrap/images";
+@import "template/bootstrap/code";
+@import "template/bootstrap/grid";
+@import "template/bootstrap/tables";
+@import "template/bootstrap/forms";
+@import "template/bootstrap/buttons";
+@import "template/bootstrap/transitions";
+@import "template/bootstrap/dropdown";
+@import "template/bootstrap/button-group";
+@import "template/bootstrap/input-group";
+@import "template/bootstrap/custom-forms";
+@import "template/bootstrap/nav";
+@import "template/bootstrap/navbar";
+@import "template/bootstrap/card";
+@import "template/bootstrap/breadcrumb";
+@import "template/bootstrap/pagination";
+@import "template/bootstrap/badge";
+@import "template/bootstrap/jumbotron";
+@import "template/bootstrap/alert";
+@import "template/bootstrap/progress";
+@import "template/bootstrap/media";
+@import "template/bootstrap/list-group";
+@import "template/bootstrap/close";
+@import "template/bootstrap/modal";
+@import "template/bootstrap/tooltip";
+@import "template/bootstrap/popover";
+@import "template/bootstrap/carousel";
+@import "template/bootstrap/utilities";
+@import "template/bootstrap/print";
+
+ // Custom components
+
+ @import "template/custom/alerts.scss";
+ @import "template/custom/buttons.scss";
+ @import "template/custom/dropdown.scss";
+ @import "template/custom/footer.scss";
+ @import "template/custom/forms.scss";
+ @import "template/custom/images.scss";
+ @import "template/custom/modal.scss";
+ @import "template/custom/navbar.scss";
+ @import "template/custom/type.scss";
+ @import "template/custom/tables";
+ @import "template/custom/checkboxes-radio";
+ @import "template/custom/fixed-plugin";
+ @import "template/custom/sidebar-and-main-panel.scss";
+ @import "template/custom/misc.scss";
+ @import "template/custom/input-group.scss";
+
+
+ // Vendor / Plugins
+
+@import "template/custom/vendor/plugin-perfect-scrollbar.scss";
+@import "template/custom/vendor/plugin-animate-bootstrap-notify.scss";
+
+// Cards
+
+@import 'template/custom/card';
+@import "template/custom/cards/card-chart";
+@import "template/custom/cards/card-map";
+@import "template/custom/cards/card-user";
+@import "template/custom/cards/card-task";
+@import "template/custom/cards/card-plain";
